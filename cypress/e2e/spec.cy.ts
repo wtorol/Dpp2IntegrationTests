@@ -28,7 +28,8 @@ describe('Simple smoke test', () => {
         resolve(response.body);
       })
     });
-
+    cy.log("Thread main" + credentials.uid )
+    
     // load the app - should default to the sign-in page
     cy.visit(clientUrl, {
       onBeforeLoad: (win) => {
@@ -67,6 +68,7 @@ describe('Simple smoke test', () => {
       cy.request("DELETE",`${serverUrl}/test-accounts/uid/${credentials.uid}`).then(response=>{
         expect(response.status).to.be.equal(200);
         resolve();
+        cy.log("erased")
       })
     });
 
